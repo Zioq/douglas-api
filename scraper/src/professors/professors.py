@@ -40,6 +40,8 @@ class Professors:
         
         return uniqueCsisProfessorsList
 
+        driver.quit()
+
     def convertCsv(self,proflist):
         with open('professor_data.txt','w') as data_file:
             wr = csv.writer(data_file, quoting= csv.QUOTE_ALL)
