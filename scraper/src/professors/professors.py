@@ -62,6 +62,14 @@ class Professors:
         driver.quit()
 
     ## Function for professor data into CSV file.
+    def convertCsv(self, dict_list):
+        toCSV = dict_list
+        keys = toCSV[0].keys()
+        # THis time we need to use 'w' to ignore error 
+        with open('semester_info.csv', 'w', newline='')  as output_file:
+            dict_writer = csv.DictWriter(output_file, keys)
+            dict_writer.writeheader()
+            dict_writer.writerows(toCSV)
 
    
     ## Create a `Dictionary` which consist of course, section, and instructor name 
@@ -107,13 +115,15 @@ class Professors:
         # Call the dictionary list 
         dict_list = professors.dict_list()
 
-        # Save the dict_list info into CSV File
 
         # Iterating list to save each of list element in the dictionary
         for i in range(len(subject_data)):
             data = professors.creat_dictionary(subject_data[i],session_data[i],csisProf_data[i])
             dict_list.append(data)
         
+        # Save the dict_list info into CSV File
+        professors.convertCsv(dict_list)
+
         """ # Check the list elements which is a dictionary format 
         for value in dict_list:
             print(value)
